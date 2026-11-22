@@ -1,0 +1,62 @@
+{
+  "temperature": 21.0,
+  "humidity": 45.0,
+  "airQuality": 70,
+  "devices": [
+    {
+      "id": 1,
+      "type": "thermostat",
+      "name": "Nappali Termosztát",
+      "category": "Nappali",
+      "voltage": 230,
+      "current": 2,
+      "isOn": true,
+      "ecoMode": false,
+      "targetTemperature": 22.5
+    },
+    {
+      "id": 2,
+      "type": "purifier",
+      "name": "Háló Légtisztító",
+      "category": "Hálószoba",
+      "voltage": 230,
+      "current": 1,
+      "isOn": false,
+      "ecoMode": false,
+      "targetTemperature": 22.0
+    },
+    {
+      "id": 3,
+      "type": "humidifier",
+      "name": "Párásító",
+      "category": "Gyerekszoba",
+      "voltage": 230,
+      "current": 1,
+      "isOn": false,
+      "ecoMode": false,
+      "targetTemperature": 22.0
+    },
+    {
+      "id": 4,
+      "type": "lamp",
+      "name": "Mennyezeti Lámpa",
+      "category": "Nappali",
+      "voltage": 230,
+      "current": 1,
+      "isOn": false,
+      "ecoMode": false,
+      "targetTemperature": 22.0
+    },
+    {
+      "id": 5,
+      "type": "humidifier",
+      "name": "asdasd",
+      "category": "konyha",
+      "voltage": 230,
+      "current": 1,
+      "isOn": false,
+      "ecoMode": false,
+      "targetTemperature": 22.0
+    }
+  ]
+}
