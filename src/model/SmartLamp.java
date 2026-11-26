@@ -1,3 +1,5 @@
+package model;
+
 public class SmartLamp extends Devices {
 
     public SmartLamp(String name, int id, int u, int i, String category, SmartHome smartHome) {

@@ -1,3 +1,5 @@
+package ui;
+
 import java.util.Scanner;
 
 public class ConsoleInputReader {
@@ -14,7 +16,7 @@ public class ConsoleInputReader {
             System.out.print("Érvénytelen szám, próbáld újra: ");
         }
         int value = scanner.nextInt();
-        scanner.nextLine(); // Sorvége karakter elnyelése
+        scanner.nextLine();
         return value;
     }
 

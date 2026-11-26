@@ -1,3 +1,9 @@
+package action;
+
+import model.Devices;
+import model.SmartHome;
+import ui.ConsoleInputReader;
+
 public class DevicePowerSwitchAction {
 
     public static void execute(SmartHome home, ConsoleInputReader input, boolean turnOn) {

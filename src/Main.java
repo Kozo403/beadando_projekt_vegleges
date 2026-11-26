@@ -1,3 +1,15 @@
+import action.DeviceCreationAction;
+import action.DeviceEcoToggleAction;
+import action.DevicePowerSwitchAction;
+import action.DeviceWorkAction;
+import action.HomeInitializer;
+import action.JsonLoadAction;
+import action.JsonSaveAction;
+import model.SmartHome;
+import ui.ConsoleInputReader;
+import ui.DeviceLister;
+import ui.MenuPrinter;
+
 public class Main {
     private static final int CAPACITY = 20;
     private static final String DEFAULT_JSON_FILE = "smarthome_state.json";

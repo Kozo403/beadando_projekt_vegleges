@@ -1,3 +1,10 @@
+package action;
+
+import model.Devices;
+import model.EcoModeable;
+import model.SmartHome;
+import ui.ConsoleInputReader;
+
 public class DeviceEcoToggleAction {
 
     public static void execute(SmartHome home, ConsoleInputReader input) {

@@ -1,3 +1,12 @@
+package persistence;
+
+import model.Devices;
+import model.EcoModeable;
+import model.SmartAirhumidifier;
+import model.SmartAirpurifier;
+import model.SmartHome;
+import model.SmartThermostat;
+
 public class SmartHomeJsonExporter {
 
     public static String toJson(SmartHome home) {

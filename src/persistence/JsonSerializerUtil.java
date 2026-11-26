@@ -1,3 +1,5 @@
+package persistence;
+
 public class JsonSerializerUtil {
 
     public static String escapeJson(String text) {

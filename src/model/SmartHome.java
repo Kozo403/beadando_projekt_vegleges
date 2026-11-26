@@ -1,3 +1,5 @@
+package model;
+
 public class SmartHome {
     private double temperature;
     private double humidity;

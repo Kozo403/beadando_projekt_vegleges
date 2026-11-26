@@ -1,3 +1,6 @@
+package persistence;
+
+import model.SmartHome;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -10,7 +13,7 @@ public class SmartHomeFileStorage {
         String jsonContent = SmartHomeJsonExporter.toJson(home);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(jsonContent);
-            System.out.println("💾 Állapot elmentve JSON fájlba: " + filePath);
+            System.out.println(" Állapot elmentve JSON fájlba: " + filePath);
         } catch (IOException e) {
             System.out.println("Hiba a JSON fájl mentésekor: " + e.getMessage());
         }
@@ -23,7 +26,7 @@ public class SmartHomeFileStorage {
             while ((line = reader.readLine()) != null) {
                 sb.append(line).append("\n");
             }
-            System.out.println("📂 Állapot betöltve JSON fájlból: " + filePath);
+            System.out.println(" Állapot betöltve JSON fájlból: " + filePath);
             return SmartHomeJsonImporter.fromJson(sb.toString(), capacity);
         } catch (IOException e) {
             System.out.println("Hiba a JSON fájl betöltésekor: " + e.getMessage());

@@ -1,3 +1,11 @@
+package action;
+
+import model.SmartAirhumidifier;
+import model.SmartAirpurifier;
+import model.SmartHome;
+import model.SmartLamp;
+import model.SmartThermostat;
+
 public class HomeInitializer {
 
     public static SmartHome createDefaultHome(int capacity) {

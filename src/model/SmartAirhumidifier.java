@@ -1,3 +1,5 @@
+package model;
+
 public class SmartAirhumidifier extends Devices {
 
     public SmartAirhumidifier(String name, int id, int u, int i, String category, SmartHome smartHome) {

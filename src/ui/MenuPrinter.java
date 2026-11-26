@@ -1,8 +1,12 @@
+package ui;
+
+import model.SmartHome;
+
 public class MenuPrinter {
 
     public static void printMenu(SmartHome home) {
         System.out.println("\n==========================================================");
-        System.out.println("              🏠 OKOSOTTHON VEZÉRLŐ RENDSZER              ");
+        System.out.println("              OKOSOTTHON VEZÉRLŐ RENDSZER              ");
         System.out.println("==========================================================");
         System.out.printf(" Hőm: %.1f °C | Pára: %.1f%% | Lev.min: %d | Fogyasztás: %.1f W%n",
                 home.getTemperature(), home.getHumidity(), home.getAirQuality(), home.getTotalPowerConsumption());

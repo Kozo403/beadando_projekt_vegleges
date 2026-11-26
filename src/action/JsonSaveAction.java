@@ -1,3 +1,9 @@
+package action;
+
+import model.SmartHome;
+import persistence.SmartHomeFileStorage;
+import ui.ConsoleInputReader;
+
 public class JsonSaveAction {
 
     public static void execute(SmartHome home, ConsoleInputReader input, String defaultFile) {

@@ -1,3 +1,9 @@
+package action;
+
+import model.Devices;
+import model.SmartHome;
+import ui.ConsoleInputReader;
+
 public class DeviceWorkAction {
 
     public static void execute(SmartHome home, ConsoleInputReader input) {

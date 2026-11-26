@@ -1,3 +1,5 @@
+package model;
+
 public interface EcoModeable {
     void enableEcoMode();
     void disableEcoMode();

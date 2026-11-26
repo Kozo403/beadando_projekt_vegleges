@@ -1,3 +1,9 @@
+package ui;
+
+import model.Devices;
+import model.EcoModeable;
+import model.SmartHome;
+
 public class DeviceLister {
 
     public static void listDevices(SmartHome home) {

@@ -1,23 +1,18 @@
-public class SmartThermostat extends Devices implements EcoModeable {
-    private final double targetTemperature;
+package model;
+
+public class SmartAirpurifier extends Devices implements EcoModeable {
     private boolean ecoMode;
 
-    public SmartThermostat(String name, int id, int u, int i, String category, SmartHome smartHome, double targetTemperature) {
+    public SmartAirpurifier(String name, int id, int u, int i, String category, SmartHome smartHome) {
         super(name, id, u, i, category, smartHome);
-        this.targetTemperature = targetTemperature;
         this.ecoMode = false;
-    }
-
-    public double getTargetTemperature() {
-        return targetTemperature;
     }
 
     @Override
     public void work() {
         if (isOn()) {
-            double change = ecoMode ? 0.2 : 0.5;
-            smartHome.changeTemperature(change);
-            System.out.println(getName() + " fűt. Cél: " + targetTemperature + " °C" + (ecoMode ? " [ECO MÓD]" : ""));
+            smartHome.changeAirQuality(15);
+            System.out.println(getName() + " tisztítja a levegőt" + (ecoMode ? " [ECO MÓD]" : "") + ".");
         }
     }
 
@@ -45,7 +40,7 @@ public class SmartThermostat extends Devices implements EcoModeable {
         }
         double basePower = super.getPowerConsumption();
         if (basePower == 0) {
-            basePower = 1500.0;
+            basePower = 50.0;
         }
         return ecoMode ? basePower * 0.75 : basePower;
     }

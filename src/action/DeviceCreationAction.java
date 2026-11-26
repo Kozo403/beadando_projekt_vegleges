@@ -1,3 +1,13 @@
+package action;
+
+import model.Devices;
+import model.SmartAirhumidifier;
+import model.SmartAirpurifier;
+import model.SmartHome;
+import model.SmartLamp;
+import model.SmartThermostat;
+import ui.ConsoleInputReader;
+
 public class DeviceCreationAction {
 
     public static int execute(SmartHome home, ConsoleInputReader input, int nextId) {
