@@ -1,0 +1,54 @@
+# Okosotthon Szimulációs és Vezérlő Rendszer
+
+Objektumorientált programozás (OOP) alapelvekre épülő, tiszta Java (Core Java) nyelven megvalósított okosotthon vezérlőalkalmazás. A rendszer külső könyvtárak és GUI-keretrendszerek nélkül, szabványos Java nyelvű elemekkel és hagyományos tömbökkel modellezi az okosotthon környezeti paramétereit, az eszközök működését, a szelektív energiatakarékos (Eco) üzemmódot, valamint a JSON-alapú állapotmentést és -visszatöltést.
+
+---
+
+## Projekt áttekintése és fő funkciók
+
+* **Környezeti állapotmodellezés (`SmartHome`):** Nyilvántartja az aktuális hőmérsékletet, páratartalmat és levegőminőséget, valamint kezeli a hozzárendelt eszközök tömbjét és kiszámítja az összesített pillanatnyi teljesítményfelvételt (Wattban).
+* **Eszközhierarchia és polimorf működés (`Devices` és leszármazottak):**
+  * `SmartThermostat`: Fűtési feladatot lát el, módosítja a hőmérsékletet, és támogatja az Eco üzemmódot.
+  * `SmartAirpurifier`: Javítja a levegőminőséget, és támogatja az Eco üzemmódot.
+  * `SmartAirhumidifier`: Növeli a páratartalmat.
+  * `SmartLamp`: Világítási funkciót és rögzített teljesítményfelvételt valósít meg.
+* **Szelektív Eco üzemmód és fogyasztásszámítás (`EcoModeable`):** Kizárólag a `SmartThermostat` és a `SmartAirpurifier` implementálja az `EcoModeable` interfészt. Aktív Eco módban a fogyasztás a normál teljesítmény **75%-ára** mérséklődik (25%-os megtakarítás mellett).
+* **Csoportosítás és egyedi azonosító (ID) alapú vezérlés:** Minden eszköz rendelkezik egyedi azonosítóval (`id`) és kategória/szoba besorolással (`category`), amely alapján a vezérlőműveletek célzottan végrehajthatók.
+* **JSON-alapú perzisztencia:** A ház aktuális környezeti értékei és az eszközök adatai — beleértve a mentés pillanatában fennálló be-/kikapcsolt (`isOn`) és Eco állapotaikat — JSON fájlba menthetők és onnan visszaállíthatók.
+
+---
+
+## Architektúra és felelősségi körök szétválasztása
+
+A projekt a *Single Responsibility Principle* (egyetlen felelősség elve) mentén elkülönített osztályokra tagolja a belépési pontot, a beolvasást, a megjelenítést, a műveletek végrehajtását és a perzisztenciát:
+
+* **`Main`**: Az alkalmazás belépési pontja; inicializálja a rendszert, vezérli a főciklust, és delegálja a menüpontokhoz tartozó hívásokat.
+* **`HomeInitializer`**: Létrehozza a kezdeti `SmartHome` példányt és regisztrálja az alapértelmezett eszközöket.
+* **`ConsoleInputReader`**: Kezeli a szabványos bemenetről történő egész szám- és sorbeolvasást, valamint a bemeneti puffer kezelését.
+* **`MenuPrinter`**: Megjeleníti a konzolos menüt, a környezeti mutatókat és az aktuális összfogyasztást.
+* **`DeviceLister`**: Kilistázza a nyilvántartott eszközöket azonosítóval, kategóriával, működési és Eco állapottal, valamint fogyasztási adattal.
+* **`DevicePowerSwitchAction`**: Azonosító (`id`) alapján be- vagy kikapcsolja a kiválasztott eszközt.
+* **`DeviceEcoToggleAction`**: Azonosító (`id`) alapján átkapcsolja az Eco módot a kompatibilis (`EcoModeable`) eszközökön.
+* **`DeviceWorkAction`**: Azonosító (`id`) alapján meghívja a kiválasztott eszköz `work()` metódusát.
+* **`DeviceCreationAction`**: Új eszközpéldányt hoz létre a megadott adatokkal, és felveszi a `SmartHome` nyilvántartásába.
+* **`JsonSaveAction` és `JsonLoadAction`**: A mentési és visszatöltési menüpontok végrehajtását fogják össze.
+* **`SmartHomeJsonExporter`, `SmartHomeJsonImporter`, `SmartHomeFileStorage`, `JsonSerializerUtil`**: Biztosítják a ház és az eszközök állapotának JSON-szerializációját, deszerializációját és fájlrendszerbeli írását/olvasását.
+
+---
+
+## Alkalmazott OOP elvek és tervezési minta
+
+* **Kapszulázás (Encapsulation):** Az osztályok adattagjai jellemzően `private` vagy `protected` láthatóságúak, az állapotmódosítás és lekérdezés kontrollált metódusokon keresztül történik.
+* **Absztrakció és interfészek:** A `Devices` absztrakt ősosztály egységes szerződést (`work()`) és közös attribútumokat rögzít, míg az `EcoModeable` interfész csak az arra alkalmas eszközök számára írja elő az energiatakarékos viselkedést.
+* **Öröklődés és polimorfizmus:** A konkrét eszközosztályok a `Devices` ősosztályból származnak, és felülírják a `work()` illetve `getPowerConsumption()` metódusokat; a `SmartHome.operateAll()` és `getTotalPowerConsumption()` futásidőben polimorf módon kezeli őket.
+* **Tervezési minta (Factory / Creation encapsulation & Interface-based Polymorphism):** Az objektumpéldányosítás logikája elkülönül a `Main` vezérlőhuroktól (`HomeInitializer`, `DeviceCreationAction`, `SmartHomeJsonImporter`), a szelektív képességek pedig interfész-alapú polimorfizmussal (`EcoModeable`) valósulnak meg.
+
+---
+
+## Fordítás és futtatás
+
+A projekt kizárólag szabványos Java Development Kit (JDK) eszközöket használ.
+
+1. Helyezd a `.java` forrásfájlokat a forráskönyvtárba (például `src/`), majd fordítsd le őket:
+   ```bash
+   javac -d out src/*.java
